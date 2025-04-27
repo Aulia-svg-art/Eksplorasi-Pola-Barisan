@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Eksplorasi Pola Suatu Barisan</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #e0f0ff, #ffffff);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .container {
+      flex: 1;
+      padding: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      display: none;
+    }
+    .container.active {
+      display: block;
+    }
+    h1 {
+      text-align: center;
+      color: #003366;
+    }
+    .soal {
+      background: #ffffff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 3px 10px rgba(0,0,0,0.15);
+    }
+    .soal p {
+      font-size: 18px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .btn {
+      display: inline-block;
+      margin: 10px 5px 0;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    footer {
+      background: #003366;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+      margin-top: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table, th, td {
+      border: 1px solid #003366;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+    #tabel-info {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container active" id="slide1">
+  <h1>Eksplorasi Barisan Aritmetika</h1>
+  <p style="text-align: center; font-size:18px;">Temukan pola barisan dari soal berikut!</p>
+  <div id="container1"></div>
+  <div style="text-align:center;">
+    <button class="btn" onclick="tampilkanSlide2()">➡️ Lanjut ke Slide 2</button>
+  </div>
+</div>
+
+<div class="container" id="slide2">
+  <h1>Menentukan Suku Berikutnya</h1>
+  <p style="text-align: center; font-size:18px;">Lanjutkan 3 suku berikutnya!</p>
+  <div id="container2"></div>
+  <div style="text-align:center;">
+    <button class="btn" onclick="tampilkanSlide1()">⬅️ Kembali ke Slide 1</button>
+    <button class="btn" onclick="tampilkanSlide3()">➡️ Lanjut ke Slide 3</button>
+  </div>
+</div>
+
+<div class="container" id="slide3">
+  <h1>Refleksi Barisan</h1>
+  <p style="text-align: center; font-size:18px;">Beberapa diantara barisan yang telah kalian eksplorasi sebelumnya adalah barisan aritmetika. Tahukah kalian mana saja barisan itu?</p>
+  <div style="text-align:center;">
+    <button class="btn" onclick="tampilkanInformasi()">Tampilkan Informasi Lanjut</button>
+  </div>
+  <div id="tabel-info">
+    <table>
+      <tr>
+        <th>Barisan Aritmetika</th>
+        <th>Non Barisan Aritmetika</th>
+      </tr>
+      <tr>
+        <td>5, 10, 15, 20, 25, 30</td>
+        <td>3, 6, 12, 24, 48, 96</td>
+      </tr>
+      <tr>
+        <td>100, 95, 90, 85, 80, 75</td>
+        <td>2, 5, 10, 17, 26, 37</td>
+      </tr>
+      <tr>
+        <td>2, 4, 6, 8, 10, 12</td>
+        <td>1, 4, 9, 16, 25, 36</td>
+      </tr>
+      <tr>
+        <td>7, 14, 21, 28, 35, 42</td>
+        <td>1, 1, 2, 3, 5, 8, 13</td>
+      </tr>
+      <tr>
+        <td>9, 18, 27, 36, 45, 54, 63</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>20, 18, 16, 14, 12, 10</td>
+        <td></td>
+      </tr>
+    </table>
+    <p style="text-align:center; margin-top:20px;">Dari tabel di atas, apa ciri khusus barisan aritmetika?</p>
+  </div>
+  <div style="text-align:center;">
+    <button class="btn" onclick="tampilkanSlide2()">⬅️ Kembali ke Slide 2</button>
+    <button class="btn" onclick="selesaiEksplorasi()">✔️ Selesai Eksplorasi</button>
+  </div>
+</div>
+
+<footer>
+  Disusun Oleh : Maulida Aulia (23030174163)
+</footer>
+
+<script>
+const soalBarisan1 = [
+  { suku: [5, 10, 15, 20, 25, 30], jawaban: "+5" },
+  { suku: [100, 95, 90, 85, 80, 75], jawaban: "-5" },
+  { suku: [3, 6, 12, 24, 48, 96], jawaban: "×2" },
+  { suku: [2, 5, 10, 17, 26, 37], jawaban: "+3,+5,+7" },
+  { suku: [1, 4, 9, 16, 25, 36], jawaban: "Kuadrat" }
+];
+
+const soalBarisan2 = [
+  { suku: [2, 4, 6, 8, 10, 12], jawaban: "14,16,18" },
+  { suku: [7, 14, 21, 28, 35, 42], jawaban: "49,56,63" },
+  { suku: [1, 1, 2, 3, 5, 8, 13], jawaban: "21,34,55" },
+  { suku: [9, 18, 27, 36, 45, 54, 63], jawaban: "72,81,90" },
+  { suku: [20, 18, 16, 14, 12, 10], jawaban: "8,6,4" }
+];
+
+function renderSoal(containerId, soalList, cekFunctionPrefix) {
+  const container = document.getElementById(containerId);
+  soalList.forEach((item, index) => {
+    const soalDiv = document.createElement('div');
+    soalDiv.className = 'soal';
+    soalDiv.innerHTML = `
+      <p><strong>Soal ${index + 1}:</strong> ${item.suku.join(", ")}</p>
+      <input type="text" id="${cekFunctionPrefix}-${index}" placeholder="Jawaban...">
+      <button class="btn" onclick="cekJawaban('${cekFunctionPrefix}', ${index})">Cek Jawaban</button>
+      <div id="feedback-${cekFunctionPrefix}-${index}" class="feedback"></div>
+    `;
+    container.appendChild(soalDiv);
+  });
+}
+
+function cekJawaban(prefix, index) {
+  const input = document.getElementById(`${prefix}-${index}`).value.trim().toLowerCase().replace(/\s/g,'');
+  const feedback = document.getElementById(`feedback-${prefix}-${index}`);
+  const correctAnswer = (prefix === 'input1' ? soalBarisan1 : soalBarisan2)[index].jawaban.toLowerCase().replace(/\s/g,'');
+
+  if (input === correctAnswer) {
+    feedback.textContent = "✅ Bagus sekali!";
+    feedback.style.color = "green";
+  } else {
+    feedback.textContent = "❌ Ayo lebih teliti lagi!";
+    feedback.style.color = "red";
+  }
+}
+
+function tampilkanSlide1() {
+  setActiveSlide('slide1');
+}
+function tampilkanSlide2() {
+  setActiveSlide('slide2');
+}
+function tampilkanSlide3() {
+  setActiveSlide('slide3');
+}
+function setActiveSlide(slideId) {
+  document.querySelectorAll('.container').forEach(slide => {
+    slide.classList.remove('active');
+  });
+  document.getElementById(slideId).classList.add('active');
+}
+
+function tampilkanInformasi() {
+  document.getElementById('tabel-info').style.display = 'block';
+}
+
+function selesaiEksplorasi() {
+  window.close();
+}
+
+renderSoal('container1', soalBarisan1, 'input1');
+renderSoal('container2', soalBarisan2, 'input2');
+</script>
+
+</body>
+</html>
